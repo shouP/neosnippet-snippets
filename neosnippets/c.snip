@@ -51,9 +51,11 @@ snippet     switch
 options     head
 abbr        switch () {}
     switch (${1:#:var}) {
-        case ${2:#:val}:
-            ${0:TARGET}
-            break;
+    case ${2:#:val}:
+        ${0:TARGET}
+        break;
+    default:
+        break;
     }
 
 snippet     function
@@ -147,6 +149,19 @@ snippet comment
 alias /*
     /* ${1:#:comment} */
     ${0}
+
+snippet commentFunction
+alias   commentfunc, functionComment, doxyFunc
+abbr    /** ...  */
+    /**
+     *	${1:#:func_overview} 
+     *	
+     *	${2:#:detail}
+     *	
+     *	@param ${3:-}
+     *	@return ${4:-}
+	 *	@attention [ResourceAlloc] 確保有無：${5:無} /  解放IF:${6:-}
+     */
 
 snippet sizeof
 alias size

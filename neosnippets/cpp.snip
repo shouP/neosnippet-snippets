@@ -101,6 +101,129 @@ abbr        #include<iostream> int main...
         return 0;
     }
 
-snippet     p
+snippet     commentLineCpp-
+alias       line1
 options     head
-  std::cout << ${0:TARGET} << std::endl;
+abbr        //---...---
+    //------------------------------------------------------------------------------
+    // ${1}
+    //------------------------------------------------------------------------------
+    ${0}
+
+snippet     commentLineCpp=
+alias       line2
+options     head
+abbr        //===...===
+    //==============================================================================
+    // ${1}
+    //==============================================================================
+    ${0}
+
+# google test functions.
+snippet     gtestfixture
+options     head
+alias       fixture
+abbr        class FixtureName : public ::testing::Test {...}
+    class ${1:FixtureName} : public ::testing::Test {
+    protected:
+        virtual void SetUp() {
+            // このコードは，コンストラクタの直後（各テストの直前）
+            // に呼び出されます．
+            ${0}
+        };
+    
+        virtual void TearDown() {
+            // このコードは，各テストの直後（デストラクタの直前）
+            // に呼び出されます．
+            ${0}
+        };
+    
+    public:
+        ${0}
+    };
+
+snippet     gtestfunction
+options     head
+alias       test
+abbr        TEST( TestName, TestCase ) { ... }
+    TEST(${1:TestName}, ${2:TestCase})
+    {
+        ${0}
+    }
+
+snippet     gtestfixturefunction
+options     head
+alias       test_f
+abbr        TEST_F( FixtureName, TestCase ) { ... }
+    TEST_F(${1:TestName}, ${2:TestCase})
+    {
+        ${0}
+    }
+
+#assertion 
+snippet     assert_eq
+options     head
+abbr        ASSERT_EQ( expected == actual );
+    ASSERT_EQ(${1:expected}, ${2:actual});
+snippet     assert_ne
+options     head
+abbr        ASSERT_NE( val1 != val2 );
+    ASSERT_NE(${1:val1}, ${2:val2});
+snippet     assert_lt
+options     head
+abbr        ASSERT_LT( val1 < val2 );
+    ASSERT_LT(${1:val1}, ${2:val2});
+snippet     assert_le
+options     head
+abbr        ASSERT_LE( val1 <= val2 );
+    ASSERT_LE(${1:val1}, ${2:val2});
+snippet     assert_gt
+options     head
+abbr        ASSERT_GT( val1 > val2 );
+    ASSERT_GT(${1:val1}, ${2:val2});
+snippet     assert_ge
+options     head
+abbr        ASSERT_GE( val1 >= val2 );
+    ASSERT_GE(${1:val1}, ${2:val2});
+snippet     assert_true
+options     head
+abbr        ASSERT_TRUE( condition );
+    ASSERT_TRUE(${1:condition});
+snippet     assert_false
+options     head
+abbr        ASSERT_FALSE( condition );
+    ASSERT_FALSE(${1:condition});
+
+#expection
+snippet     expect_eq
+options     head
+abbr        EXPECT_EQ( expected, actual );
+    EXPECT_EQ(${1:expected}, ${2:actual});
+snippet     expect_ne
+options     head
+abbr        EXPECT_NE( val1, val2 );
+    EXPECT_NE(${1:val1}, ${2:val2});
+snippet     expect_lt
+options     head
+abbr        EXPECT_LT( val1 < val2 );
+    EXPECT_LT(${1:val1}, ${2:val2});
+snippet     expect_le
+options     head
+abbr        EXPECT_LE( val1 <= val2 );
+    EXPECT_LE(${1:val1}, ${2:val2});
+snippet     expect_gt
+options     head
+abbr        EXPECT_GT( val1 > val2 );
+    EXPECT_GT(${1:val1}, ${2:val2});
+snippet     expect_ge
+options     head
+abbr        EXPECT_GE( val1 >= val2 );
+    EXPECT_GE(${1:val1}, ${2:val2});
+snippet     expect_true
+options     head
+abbr        EXPECT_TRUE( condition );
+    EXPECT_TRUE(${1:condition});
+snippet     expect_false
+options     head
+abbr        EXPECT_FALSE( condition );
+    EXPECT_FALSE(${1:condition});
